@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Israa's Birthday</title>
+    <link rel="icon" href="happy-birthday.png" id="website-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #5A1A32;
+            --secondary-color: #7B3A4A;
+            --accent-color: #FFD700;
+            --text-color: #FFFFFF;
+            --container-bg: #FFFDF0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), #A8A8AA);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            text-align: center;
+            position: relative;
+            overflow-x: hidden;
+            padding-top: 80px; /* Space for title */
+            padding-bottom: 40px;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 10px 0;
+            font-size: 26px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 15px var(--text-color);
+            transform: scale(1.2) rotate(360deg);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .website-title {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5vw; /* Responsive font size */
+    font-family: 'Brush Script MT', cursive;
+    color: #FF69B4; /* Fallback color */
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+    z-index: 100;
+    white-space: nowrap;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.website-title span {
+    background: linear-gradient(45deg, #FF69B4, #FFD700, #FF69B4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: titleGlow 3s infinite;
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 105, 180, 0.5), 0 0 20px rgba(255, 105, 180, 0.5), 0 0 30px rgba(255, 105, 180, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 105, 180, 1), 0 0 30px rgba(255, 105, 180, 1), 0 0 40px rgba(255, 105, 180, 1);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(255, 105, 180, 0.5), 0 0 20px rgba(255, 105, 180, 0.5), 0 0 30px rgba(255, 105, 180, 0.5);
+    }
+}
+        .website-title.hidden {
+            transform: translate(-50%, -100px);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: brightness(100%); }
+            50% { filter: brightness(150%); }
+        }
+
+        .sections-container {
+            position: relative;
+            min-height: 400px;
+            margin: 20px auto;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .section {
+            display: none;
+            opacity: 0;
+            padding: 30px;
+            background-color: var(--container-bg);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: black;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 120px); /* Adjust for nav width */
+            max-width: 800px;
+            margin: auto;
+            transition: opacity 0.3s ease-in-out;
+            box-sizing: border-box;
+        }
+
+        .section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        #home {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        #events {
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        #gallery {
+            padding: 30px;
+            text-align: center;
+            max-width: 1200px;
+            width: calc(100% - 120px);
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 1100px;
+            box-sizing: border-box;
+        }
+
+        #contact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            max-width: 600px;
+            width: calc(100% - 120px);
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .contact-message {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            font-family: 'Brush Script MT', cursive;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .contact-name {
+            font-size: 24px;
+            color: #5A1A32;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            color: #333;
+            font-size: 36px;
+            transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .social-icons a.instagram:hover {
+            color: #E1306C;
+            transform: scale(1.2) rotate(15deg);
+            text-shadow: 0 0 15px rgba(225, 48, 108, 0.5);
+        }
+
+        .social-icons a.whatsapp:hover {
+            color: #25D366;
+            transform: scale(1.2) rotate(-15deg);
+            text-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+        }
+
+        .social-icons a.gmail:hover {
+            color: #EA4335;
+            transform: scale(1.2) rotate(15deg);
+            text-shadow: 0 0 15px rgba(234, 67, 53, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: auto;
+                transform: none;
+                flex-direction: row;
+                justify-content: space-around;
+                border-radius: 15px 15px 0 0;
+                margin: 0;
+                padding: 15px 10px;
+            }
+
+            nav a {
+                margin: 0;
+                padding: 12px;
+                font-size: 24px;
+                position: relative;
+                transition: transform 0.3s ease, color 0.3s ease;
+            }
+
+            nav a:active {
+                transform: scale(0.9);
+            }
+
+            nav a::after {
+                content: '';
+                position: absolute;
+                bottom: 5px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 5px;
+                height: 5px;
+                background-color: var(--accent-color);
+                border-radius: 50%;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            nav a.active::after {
+                opacity: 1;
+            }
+
+            .website-title {
+                font-size: 36px;
+                margin: 15px 0 30px;
+                padding: 0 10px;
+            }
+
+            .section {
+                margin: 60px 15px 80px;
+                padding: 25px 20px;
+            }
+
+            .home-title {
+                font-size: 2em;
+                line-height: 1.3;
+                margin-bottom: 15px;
+            }
+
+            .home-message {
+                font-size: 1.1em;
+                line-height: 1.6;
+                margin-bottom: 20px;
+                padding: 0 10px;
+            }
+
+            .contact-message {
+                font-size: 24px;
+                padding: 0 15px;
+            }
+
+            .contact-name {
+                font-size: 1.3em;
+                margin: 15px 0;
+            }
+
+            .social-icons {
+                gap: 25px;
+                padding: 10px 0;
+            }
+
+            .social-icons a {
+                font-size: 32px;
+                padding: 12px;
+            }
+
+            .social-icons a {
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .countdown {
+                font-size: 1.1em;
+                line-height: 1.5;
+                padding: 15px;
+                margin: 10px 0;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+            }
+
+            #events h1 {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+                line-height: 1.3;
+            }
+
+            #events h2 {
+                font-size: 1.4em;
+                margin-bottom: 10px;
+                line-height: 1.3;
+            }
+
+            body {
+                padding-top: 60px;
+                padding-bottom: 80px; /* Space for bottom nav */
+            }
+
+            .sections-container {
+                padding: 0 10px;
+            }
+
+            .section {
+                padding: 20px;
+                width: 95%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .lightbox-content {
+                max-width: 95%;
+            }
+
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lightbox-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            nav a {
+                font-size: 20px;
+                padding: 10px;
+            }
+
+            .website-title {
+                font-size: 32px;
+            }
+
+            .home-title {
+                font-size: 1.8em;
+            }
+
+            .contact-message {
+                font-size: 20px;
+            }
+
+            .social-icons {
+                gap: 20px;
+            }
+
+            .social-icons a {
+                font-size: 28px;
+            }
+
+            .section {
+                padding: 15px;
+                width: 100%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 8px;
+                padding: 8px;
+            }
+
+            .contact-message {
+                font-size: 20px;
+            }
+
+            .website-title {
+                font-size: 32px;
+            }
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+            background-color: rgba(255, 255, 255, 0.6);
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) scale(1.1);
+            }
+            100% {
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .balloon {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background-color: rgba(255, 0, 0, 0.6);
+            border-radius: 10px;
+            animation: rise 6s ease-in infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh);
+            }
+            100% {
+                transform: translateY(-100vh);
+            }
+        }
+
+        .star {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 0, 0.6);
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .section-hover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-hover:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .home-content {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .home-title {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        .home-message {
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Welcome Overlay Styles */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #5A1A32, #7B3A4A);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+
+        .welcome-overlay h1 {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        .welcome-overlay .click-message {
+            color: white;
+            font-size: 1.2em;
+            opacity: 0.8;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .welcome-overlay.fade-out {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+            pointer-events: none;
+        }
+
+        /* Add preload class to prevent transition on page load */
+        .preload * {
+            transition: none !important;
+        }
+
+        /* Gallery Styles */
+        #gallery {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            aspect-ratio: 1;
+            transition: transform 0.3s ease;
+            background-color: var(--primary-color);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item img, .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img, .gallery-item:hover video {
+            transform: scale(1.1);
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            transition: background 0.3s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .play-icon {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90vh;
+            position: relative;
+        }
+
+        .lightbox-content img, .lightbox-content video {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .lightbox-content {
+                max-width: 95%;
+            }
+
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lightbox-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 24px;
+            }
+        }
+
+        /* Enhanced Cartoon Birthday Cake */
+        .cake-container {
+            position: relative;
+            width: 320px;
+            height: 400px;
+            margin: 60px auto 40px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: float 3s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        .cake {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Enhanced Cake Tiers */
+        .tier {
+            position: absolute;
+            left: 50%;
+            background: linear-gradient(145deg, #F4C386, #E5A76F);
+            border-radius: 12px;
+            transform: translateX(-50%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tier-1 {
+            bottom: 80px;
+            width: 260px;
+            height: 90px;
+        }
+
+        .tier-2 {
+            bottom: 170px;
+            width: 200px;
+            height: 70px;
+        }
+
+        .tier-3 {
+            bottom: 240px;
+            width: 140px;
+            height: 50px;
+        }
+
+        /* Enhanced Frosting */
+        .frosting {
+            position: absolute;
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(to bottom, #FFB6C1, #FF99B3);
+            top: -8px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .frosting::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(to bottom, #FFB6C1, #FF99B3);
+            bottom: -8px;
+            border-radius: 20px;
+            box-shadow: inset 0 -3px 6px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Enhanced Dripping effect */
+        .drip {
+            position: absolute;
+            width: 25px;
+            height: 20px;
+            background: linear-gradient(to bottom, #FFB6C1, #FF99B3);
+            top: -2px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 
+                inset -2px 0 3px rgba(255,255,255,0.3),
+                1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Enhanced Cherries */
+        .cherry {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(circle at 30% 30%, #FF4D4D, #FF0000);
+            border-radius: 50%;
+            top: -6px;
+            box-shadow: 
+                inset -1px -1px 4px rgba(0,0,0,0.2),
+                0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Enhanced Blue decorative trim */
+        .trim {
+            position: absolute;
+            bottom: 8px;
+            width: 30px;
+            height: 15px;
+            background: linear-gradient(to bottom, #87CEEB, #5FB6E5);
+            border-radius: 0 0 15px 15px;
+            box-shadow: 
+                inset 0 1px 3px rgba(255,255,255,0.5),
+                0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Enhanced Sprinkles */
+        .sprinkle {
+            position: absolute;
+            width: 6px;
+            height: 2px;
+            background: linear-gradient(90deg, #FFD700, #FFC000);
+            border-radius: 2px;
+            transform: rotate(var(--rotation));
+            box-shadow: 0 0 3px rgba(255,215,0,0.5);
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Enhanced Candles */
+        .candle {
+            position: absolute;
+            width: 12px;
+            height: 35px;
+            background: linear-gradient(45deg, #E6A8D7, #87CEEB, #E6A8D7);
+            border-radius: 4px;
+            top: -30px;
+            transform: rotate(var(--candle-tilt, -2deg));
+            box-shadow: 
+                inset -1px 0 3px rgba(255,255,255,0.5),
+                1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .flame {
+            position: absolute;
+            width: 16px;
+            height: 20px;
+            background: linear-gradient(#FFD700, #FF8C00);
+            border-radius: 50% 50% 20% 20%;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 
+                0 0 8px #FFD700,
+                0 0 12px #FF8C00,
+                0 0 20px #FF4500;
+        }
+        /* Particle effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Wishes Wall */
+        .wishes-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .wish-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transform: rotate(var(--rotation));
+            transition: transform 0.3s ease;
+        }
+
+        .wish-card:hover {
+            transform: rotate(var(--rotation)) scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            /* .music-control {
+                bottom: 80px;
+            } */
+
+            .timeline {
+                padding: 10px;
+            }
+
+            .wishes-wall {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body class="preload">
+    <!-- Welcome Overlay -->
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <h1>🎉 Welcome to Israa's Birthday Celebration! 🎉</h1>
+        <p class="click-message">Click anywhere to start the celebration!</p>
+    </div>
+
+    <div class="website-title">
+        <span>𝓘𝓢ℛ𝓐𝓐</span>
+    </div>
+
+
+    
+    <nav>
+        <a href="#home" class="nav-link" data-section="home"><i class="fas fa-home"></i></a>
+        <a href="#events" class="nav-link" data-section="events"><i class="fas fa-calendar-alt"></i></a>
+        <a href="#gallery" class="nav-link" data-section="gallery"><i class="fas fa-images"></i></a>
+        <a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i></a>
+    </nav>
+    
+    <div class="sections-container">
+        <div id="home" class="section active">
+            <div class="cake-container">
+                <div class="cake">
+                    <!-- Bottom Tier -->
+                    <div class="tier tier-1">
+                        <div class="frosting">
+                            <!-- Drips -->
+                            <div class="drip" style="left: 10%"></div>
+                            <div class="drip" style="left: 30%"></div>
+                            <div class="drip" style="left: 50%"></div>
+                            <div class="drip" style="left: 70%"></div>
+                            <div class="drip" style="left: 90%"></div>
+                            <!-- Cherries -->
+                            <div class="cherry" style="left: 20%"></div>
+                            <div class="cherry" style="left: 40%"></div>
+                            <div class="cherry" style="left: 60%"></div>
+                            <div class="cherry" style="left: 80%"></div>
+                        </div>
+                        <!-- Blue Trim -->
+                        <div class="trim" style="left: 10%"></div>
+                        <div class="trim" style="left: 30%"></div>
+                        <div class="trim" style="left: 50%"></div>
+                        <div class="trim" style="left: 70%"></div>
+                        <div class="trim" style="left: 90%"></div>
+                        <!-- Sprinkles -->
+                        <div class="sprinkle" style="left: 15%; top: 30%; --rotation: 45deg;"></div>
+                        <div class="sprinkle" style="left: 35%; top: 50%; --rotation: -30deg;"></div>
+                        <div class="sprinkle" style="left: 55%; top: 40%; --rotation: 60deg;"></div>
+                        <div class="sprinkle" style="left: 75%; top: 60%; --rotation: -45deg;"></div>
+                    </div>
+
+                    <!-- Middle Tier -->
+                    <div class="tier tier-2">
+                        <div class="frosting">
+                            <div class="drip" style="left: 15%"></div>
+                            <div class="drip" style="left: 45%"></div>
+                            <div class="drip" style="left: 75%"></div>
+                            <div class="cherry" style="left: 30%"></div>
+                            <div class="cherry" style="left: 60%"></div>
+                        </div>
+                        <div class="trim" style="left: 20%"></div>
+                        <div class="trim" style="left: 50%"></div>
+                        <div class="trim" style="left: 80%"></div>
+                        <div class="sprinkle" style="left: 25%; top: 40%; --rotation: 30deg;"></div>
+                        <div class="sprinkle" style="left: 65%; top: 50%; --rotation: -60deg;"></div>
+                    </div>
+
+                    <!-- Top Tier -->
+                    <div class="tier tier-3">
+                        <div class="frosting">
+                            <div class="drip" style="left: 20%"></div>
+                            <div class="drip" style="left: 50%"></div>
+                            <div class="drip" style="left: 80%"></div>
+                            <div class="cherry" style="left: 35%"></div>
+                            <div class="cherry" style="left: 65%"></div>
+                        </div>
+                        <div class="trim" style="left: 30%"></div>
+                        <div class="trim" style="left: 60%"></div>
+                        <!-- Candles with different tilts -->
+                        <div class="candle" style="left: 30%; --candle-tilt: -3deg">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle" style="left: 50%; --candle-tilt: 2deg">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle" style="left: 70%; --candle-tilt: -2deg">
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1>Happy Birthday Israa! 🎉</h1>
+            <p class="home-message">
+                Today we celebrate a wonderful person who brings joy and happiness to everyone around her.
+                Explore this special space created just for you! Click the icons to discover more...
+            </p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Special Moment 1</div>
+                    <p>A beautiful memory with Israa...</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Special Moment 2</div>
+                    <p>Another wonderful memory...</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="events" class="section">
+            <h1>Birthday Celebration</h1>
+            <h2>Time Until The Big Day</h2>
+            <p class="countdown" id="countdown"></p>
+        </div>
+
+        <div id="gallery" class="section">
+            <h1>Birthday Memories</h1>
+            <div class="gallery-grid">
+                <!-- Gallery items will be added here dynamically -->
+            </div>
+        </div>
+
+        <div id="contact" class="section">
+            <div class="contact-message">We all hope you grow up and glow up ❤️💕</div>
+            <div class="contact-name">Akram Bouk</div>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/gojo_batman?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/qr/2HUYEQKAD25CN1" target="_blank" class="whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:erenyegare49@gmail.com" target="_blank" class="gmail">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <br><br>
+            <div class="contact-name">Mohamed Talbani</div>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/lv.a_911/?utm_source=ig_web_button_share_sheet" target="_blank" class="instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/qr/N7KIT6GMQSJKD1" target="_blank" class="whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:bloodsinpool999@gmail.com" target="_blank" class="gmail">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer id="section-footer">
+        <p> 2023 HappyBirthdayBestiee.com | All Rights Reserved</p>
+    </footer>
+
+    <audio id="birthdaySong" preload="auto">
+        <source src="birthday_song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <!-- Content will be added dynamically -->
+        </div>
+        <div class="lightbox-close"><i class="fas fa-times"></i></div>
+        <div class="lightbox-nav lightbox-prev"><i class="fas fa-chevron-left"></i></div>
+        <div class="lightbox-nav lightbox-next"><i class="fas fa-chevron-right"></i></div>
+    </div>
+
+    <div class="particles"></div>
+
+    <script>// DOM Elements
+    const footer = document.getElementById('section-footer');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sectionEvents = document.getElementById('events');
+    const sectionContact = document.getElementById('contact');
+    const welcomeOverlay = document.getElementById('welcomeOverlay');
+    const birthdaySong = document.getElementById('birthdaySong');
+    const homeSection = document.getElementById('home');
+        
+
+        // Handle navigation clicks
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const targetSectionId = this.getAttribute('href').substring(1);
+                window.location.hash = targetSectionId;
+                showSection(targetSectionId);
+            });
+        });
+
+        // Handle initial load and hash changes
+        function handleNavigation() {
+            const section = window.location.hash.substring(1) || 'home';
+            showSection(section);
+        }
+
+        // Ensure page starts at home and handle hash changes
+        window.addEventListener('load', function() {
+            if (!window.location.hash) {
+                window.location.hash = 'home';
+            }
+            handleNavigation();
+        });
+        
+        window.addEventListener('hashchange', handleNavigation);
+
+        
+        // Function to handle section display
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            const targetSection = document.getElementById(sectionId);
+            
+            // First, fade out all sections
+            sections.forEach(section => {
+                if (section.style.display !== 'none') {
+                    section.style.opacity = '0';
+                }
+            });
+
+            // Hide footer if visible
+            if (footer.style.display !== 'none') {
+                footer.style.opacity = '0';
+                setTimeout(() => {
+                    footer.style.display = 'none';
+                }, 300);
+            }
+
+            // Wait for fade out to complete
+            setTimeout(() => {
+                // Hide all sections
+                sections.forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Show target section
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                    // Force reflow
+                    targetSection.offsetHeight;
+                    // Fade in the target section
+                    setTimeout(() => {
+                        targetSection.style.opacity = '1';
+                        
+                        if (sectionId === 'events') {
+                            createBubbles();
+                            createBalloons();
+                            createStars();
+                        } else if (sectionId === 'about') {
+                            footer.style.display = 'block';
+                            footer.offsetHeight; // Force reflow
+                            footer.style.opacity = '1';
+                        }
+                    }, 50);
+                }
+            }, 300); // Match this with the CSS transition duration
+        }
+
+        // Handle navigation clicks
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const section = this.getAttribute('data-section');
+                showSection(section);
+            });
+        });
+
+        // Handle initial page load and direct links
+        function handleInitialLoad() {
+            let hash = window.location.hash.substring(1) || 'home';
+            showSection(hash);
+        }
+
+        // Add event listeners for page load and hash changes
+        window.addEventListener('load', handleInitialLoad);
+        window.addEventListener('hashchange', handleInitialLoad);
+
+        function updateCountdown() {
+            const birthDate = new Date("2007-01-29T00:00:00Z");
+            const now = new Date();
+            const diff = now - birthDate;
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('countdown').innerHTML =
+                years + " years " + months + " months " + days + " days " +
+                hours + " hours " + minutes + " minutes " + seconds + " seconds";
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('container-effects');
+            bubblesContainer.innerHTML = '';
+            for (let i = 0; i < 10; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                const size = Math.random() * 30 + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.bottom = `${Math.random() * 100}%`;
+                bubble.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+
+        function createBalloons() {
+            const balloonsContainer = document.getElementById('container-effects');
+            for (let i = 0; i < 5; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                balloon.style.left = `${Math.random() * 100}%`;
+                balloon.style.animationDuration = `${Math.random() * 5 + 3}s`;
+                balloonsContainer.appendChild(balloon);
+            }
+        }
+
+        function createStars() {
+            const starsContainer = document.getElementById('container-effects');
+            for (let i = 0; i < 20; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 10 + 5;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.bottom = `${Math.random() * 100}%`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        window.onload = function() {
+            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        // Audio handling
+        function playSongWithCooldown() {
+            birthdaySong.volume = 0.7;
+            birthdaySong.play().catch(error => {
+                console.log("Audio playback failed:", error);
+            });
+            
+            birthdaySong.addEventListener('ended', function() {
+                setTimeout(() => {
+                    birthdaySong.currentTime = 0;
+                    birthdaySong.play().catch(error => {
+                        console.log("Audio playback failed:", error);
+                    });
+                }, 3000);
+            });
+        }
+
+        // Handle welcome overlay click
+        welcomeOverlay.addEventListener('click', function() {
+            playSongWithCooldown();
+            welcomeOverlay.classList.add('fade-out');
+            setTimeout(() => {
+                welcomeOverlay.style.display = 'none';
+                // Show initial section after overlay is gone
+                handleInitialLoad();
+            }, 1000);
+        });
+
+        // Remove preload class after page load
+        window.addEventListener('load', () => {
+            document.body.classList.remove('preload');
+        });
+
+        // Gallery functionality
+        const galleryGrid = document.querySelector('.gallery-grid');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxContent = lightbox.querySelector('.lightbox-content');
+        const lightboxClose = lightbox.querySelector('.lightbox-close');
+        const lightboxPrev = lightbox.querySelector('.lightbox-prev');
+        const lightboxNext = lightbox.querySelector('.lightbox-next');
+
+        // Media files array with Israa's photos and videos
+        const mediaFiles = [
+            { type: 'image', src: 'israa1.jpg' },
+            { type: 'video', src: 'israa2.mp4' },
+            { type: 'video', src: 'israa3.mp4' },
+            { type: 'image', src: 'israa4.jpg' },
+            { type: 'image', src: 'israa5.jpg' },
+            { type: 'image', src: 'israa6.jpg' }
+        ];
+
+        let currentMediaIndex = 0;
+
+        // Create gallery items
+        function createGalleryItems() {
+            mediaFiles.forEach((media, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                
+                if (media.type === 'image') {
+                    const img = document.createElement('img');
+                    img.src = media.src;
+                    img.alt = `Israa's Birthday Photo ${index + 1}`;
+                    item.appendChild(img);
+                } else if (media.type === 'video') {
+                    const video = document.createElement('video');
+                    video.src = media.src;
+                    video.controls = false;
+                    video.muted = true;
+                    video.loop = true;
+                    video.playsInline = true;
+                    // Add play icon overlay
+                    const playIcon = document.createElement('div');
+                    playIcon.className = 'play-icon';
+                    playIcon.innerHTML = '<i class="fas fa-play"></i>';
+                    item.appendChild(video);
+                    item.appendChild(playIcon);
+                    // Auto-play on hover
+                    item.addEventListener('mouseenter', () => video.play());
+                    item.addEventListener('mouseleave', () => video.pause());
+                }
+
+                item.addEventListener('click', () => openLightbox(index));
+                galleryGrid.appendChild(item);
+            });
+        }
+
+        // Open lightbox
+        function openLightbox(index) {
+            currentMediaIndex = index;
+            updateLightboxContent();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            const video = lightboxContent.querySelector('video');
+            if (video) video.pause();
+        }
+
+        // Update lightbox content
+        function updateLightboxContent() {
+            const media = mediaFiles[currentMediaIndex];
+            lightboxContent.innerHTML = '';
+
+            if (media.type === 'image') {
+                const img = document.createElement('img');
+                img.src = media.src;
+                lightboxContent.appendChild(img);
+            } else if (media.type === 'video') {
+                const video = document.createElement('video');
+                video.src = media.src;
+                video.controls = true;
+                lightboxContent.appendChild(video);
+            }
+        }
+
+        // Navigate through media
+        function navigate(direction) {
+            currentMediaIndex = (currentMediaIndex + direction + mediaFiles.length) % mediaFiles.length;
+            updateLightboxContent();
+        }
+
+        // Event listeners
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', () => navigate(-1));
+        lightboxNext.addEventListener('click', () => navigate(1));
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            switch(e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowLeft':
+                    navigate(-1);
+                    break;
+                case 'ArrowRight':
+                    navigate(1);
+                    break;
+            }
+        });
+
+        // Initialize gallery
+        createGalleryItems();
+
+        // Particle Effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = '5px';
+            particle.style.height = '5px';
+            particle.style.background = `hsl(${Math.random() * 360}, 50%, 50%)`;
+            particle.style.borderRadius = '50%';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = -10 + 'px';
+            particle.style.opacity = Math.random();
+            document.querySelector('.particles').appendChild(particle);
+
+            const animation = particle.animate([
+                { transform: 'translateY(0) rotate(0)', opacity: 1 },
+                { transform: `translateY(100vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: Math.random() * 3000 + 2000,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+
+            animation.onfinish = () => particle.remove();
+        }
+
+        setInterval(createParticle, 200);
+
+        // Timeline Animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        timelineItems.forEach(item => observer.observe(item));
+
+        // Virtual Cake
+        const cake = document.querySelector('.cake-container');
+        cake.addEventListener('click', () => {
+            const flame = document.querySelector('.flame');
+            if (flame) {
+                flame.style.animation = 'none';
+                flame.style.opacity = '0';
+                setTimeout(() => flame.remove(), 300);
+                
+                // Create celebration effect
+                for (let i = 0; i < 30; i++) {
+                    setTimeout(createParticle, i * 50);
+                }
+            }
+        });
+
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    const title = document.querySelector('.website-title');
+                    const currentScrollY = window.scrollY;
+                    
+                    if (currentScrollY > lastScrollY && currentScrollY > 50) {
+                        // Scrolling down
+                        title.classList.add('hidden');
+                    } else if (currentScrollY < lastScrollY || currentScrollY <= 50) {
+                        // Scrolling up or at top
+                        title.classList.remove('hidden');
+                    }
+                    
+                    lastScrollY = currentScrollY;
+                    ticking = false;
+                });
+                
+                ticking = true;
+            }
+        });
+        
+        window.addEventListener('scroll', function() {
+            const title = document.querySelector('.website-title');
+            
+            if (window.scrollY > 10) { 
+                title.classList.add('hidden');
+            } else {
+                title.classList.remove('hidden');
+            }
+        });
+        
+        // Ensure page always starts at home section
+        window.onload = function() {
+            window.location.hash = 'home';
+            document.querySelector('[data-section="home"]').classList.add('active');
+            showSection('home');
+        };
+
+        // Fetch and display images and videos from the server
+        async function loadGallery() {
+            try {
+                const response = await fetch('/api/gallery');
+                const files = await response.json();
+                const galleryContainer = document.querySelector('.gallery-container');
+                files.forEach(file => {
+                    const filePath = `gallery/${file}`;
+                    let mediaElement;
+                    if (file.endsWith('.png')) {
+                        mediaElement = document.createElement('img');
+                        mediaElement.src = filePath;
+                        mediaElement.alt = file;
+                    } else if (file.endsWith('.mp4')) {
+                        mediaElement = document.createElement('video');
+                        mediaElement.src = filePath;
+                        mediaElement.controls = true;
+                    }
+                    galleryContainer.appendChild(mediaElement);
+                });
+            } catch (error) {
+                console.error('Error loading gallery:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadGallery);
+    </script>
+    <div class="gallery-container"></div>
+</body>
+</html>
